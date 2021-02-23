@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context=".Activity.WeightRegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/actionbar"
@@ -23,41 +23,47 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@id/tabs"
-        app:layout_constraintTop_toBottomOf="@id/actionbar" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbar">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_list"
+        <EditText
+            android:id="@+id/weight_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/TrainingRecord" />
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:hint="@string/edit_weight"
+            android:textSize="14sp" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_weight"
+        <EditText
+            android:id="@+id/fat_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/WeightRecord" />
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:hint="@string/edit_fat"
+            android:textSize="14sp" />
 
-    </com.google.android.material.tabs.TabLayout>
+        <Button
+            android:id="@+id/register_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="@string/register" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
