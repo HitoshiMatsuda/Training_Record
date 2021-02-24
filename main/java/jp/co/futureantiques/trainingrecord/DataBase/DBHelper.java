@@ -16,14 +16,9 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String WEIGHT = "weight";
     private static final String FAT = "fat";
     private static final String MEMO = "memo";
-    private static final String REST = "rest";
     private static final String CREATION_DATE = "creation_date";
     //TABLE2
-    private static final String CHEST = "chest";
-    private static final String BACK = "back";
-    private static final String LOWER = "lower";
-    private static final String SHOULDER = "shoulder";
-    private static final String RUN = "run";
+    private static final String TRAIN_MENU = "train_menu";
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String DAY = "day";
@@ -51,19 +46,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 + DELETE_FLAG + " INTEGER DEFAULT 0) "
         );
 
-        //ID|メモ|胸筋|背筋|下半身|肩|有酸素|オフ|年|月|日|削除フラグ
+        //ID|メモ|メニュー|年|月|日|削除フラグ
         db.execSQL("CREATE TABLE TRAINING_TABLE("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + MEMO + " TEXT, "
-                + CHEST + " INTEGER, "
-                + BACK + " INTEGER, "
-                + LOWER + " INTEGER, "
-                + SHOULDER + " INTEGER, "
-                + RUN + " INTEGER, "
-                + REST + " INTEGER, "
-                + YEAR + " INTEGER, "
-                + MONTH + " INTEGER, "
-                + DAY + " INTEGER, "
+                + TRAIN_MENU + " TEXT, "
+                + YEAR + " TEXT, "
+                + MONTH + " TEXT, "
+                + DAY + " TEXT, "
                 + DELETE_FLAG + " INTEGER DEFAULT 0) "
         );
     }

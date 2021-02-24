@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import jp.co.futureantiques.trainingrecord.TrainingData;
+
 public class DBManager {
     private DBHelper mHelper;
     private SQLiteDatabase db;
@@ -18,10 +20,54 @@ public class DBManager {
     }
 
     //TrainRecordFragment用
-    public Cursor select() {
-        db = mHelper.getWritableDatabase();
-        return db.rawQuery("SELECT id , chest, back, lower, shoulder, run, rest, creation_date FROM TRAINING_TABLE", null);
+    public Cursor selectAll() {
+        db = mHelper.getReadableDatabase();
+        return db.rawQuery("SELECT id as _id, train_menu , year , month , day FROM TRAINING_TABLE", null);
     }
+
+    //EditActivity
+    //トレーニング記録編集用
+    public TrainingData selectEdit(String key) {
+        db = mHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT id, train_menu, year, month, day " +
+                        "FROM TRAINING_TABLE " +
+                        "WHERE id = ?",
+                new String[]{key});
+
+        //TrainingDataへ格納
+        cursor.moveToFirst();
+        TrainingData trainingData = new TrainingData();
+        String oldMenu = cursor.getString(cursor.getColumnIndex("train_menu"));
+        String oldYear = cursor.getString(cursor.getColumnIndex("year"));
+        String oldMonth = cursor.getString(cursor.getColumnIndex("month"));
+        String oldDay = cursor.getString(cursor.getColumnIndex("day"));
+
+        trainingData.setMenu(oldMenu);
+        trainingData.setYear(oldYear);
+        trainingData.setMonth(oldMonth);
+        trainingData.setDay(oldDay);
+
+        return trainingData;
+    }
+
+    //データ更新処理
+    //EditActivity
+    public void trainUpDate(String key, String menu, String year, String month, String day) {
+        db = mHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("train_menu", menu);
+        contentValues.put("year", year);
+        contentValues.put("month", month);
+        contentValues.put("day", day);
+        db.update("TRAINING_TABLE"
+                , contentValues
+                , "id = ?"
+                , new String[]{key}
+        );
+        db.close();
+    }
+
 
     //追加処理
     //WeightRegisterActivity
@@ -38,8 +84,17 @@ public class DBManager {
 
     //追加処理
     //TrainingRegisterActivity
-    public void insertTrain(String menu, String data){
+    public void insertTrain(String menu, String year, String month, String day) {
+        db = mHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("train_menu", menu);
+        contentValues.put("year", year);
+        contentValues.put("month", month);
+        contentValues.put("day", day);
+        db.insert("TRAINING_TABLE", null, contentValues);
 
+        Log.i("TInsert_Success", "トレーニング記録を追加しました。");
+        db.close();
     }
 
     //MainActivity.Chart(Weight)
@@ -97,71 +152,4 @@ public class DBManager {
         Log.i("fBox_Insert", "fBoxへ格納しました。");
         return fBox;
     }
-
-    //更新処理
-    public void UpData(int id, int weight, int fat) {
-        db = mHelper.getWritableDatabase();
-        //カラム(id)の初期値が44であるから
-        int keyId = id + 43;
-        String Id = String.valueOf(keyId);
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("id", Id);
-        contentValues.put("weight", weight);
-        contentValues.put("fat", fat);
-        db.update("WEIGHT_TABLE"
-                , contentValues
-                , "id = ?"
-                , new String[]{Id}
-        );
-        db.close();
-    }
-
-    //保留
-    /*//SecondActivity.TextView
-    public StringBuilder reRode(Context context) {
-        if (mHelper == null) {
-            mHelper = new DBHelper(context);
-        }
-        if (db == null) {
-            db = mHelper.getReadableDatabase();
-        }
-        Cursor cursor = db.query(
-                "WEIGHT_MASTER",
-                new String[]{"id", "weight", "fat"},
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        //WeightDataへ格納する
-        cursor.moveToFirst();
-
-        StringBuilder sBuilder = new StringBuilder();
-        for (int i = 0; i < cursor.getCount(); i++) {
-            sBuilder.append(cursor.getString(cursor.getColumnIndex("id")));
-            sBuilder.append("\n");
-            sBuilder.append(cursor.getString(cursor.getColumnIndex("weight")));
-            sBuilder.append("\n");
-            sBuilder.append(cursor.getString(cursor.getColumnIndex("fat")));
-            sBuilder.append("\n");
-            sBuilder.append("------------------------------\n");
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return sBuilder;
-    }*/
-
-    /*//データベースの削除
-    public void AllDelete(){
-        db = mHelper.getWritableDatabase();
-        db.execSQL("DELETE FROM WEIGHT_MASTER");
-        Log.i("log_DB_DELETE", "テーブル内のデータが削除されました");
-        //auto_incrementをリセットしたい！！！
-        //↑とりあえず必要ないんじゃない？更新できればいい！
-        //db.execSQL("ALTER TABLE WEIGHT_MASTER DROP COLUMN id");
-        //Log.i("log_DB_RESET", "idがリセットされました");
-        db.close();
-    }*/
 }

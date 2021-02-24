@@ -15,8 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
-import java.util.Locale;
-
 import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.Fragment.DatePick;
 import jp.co.futureantiques.trainingrecord.R;
@@ -25,24 +23,34 @@ public class TrainingRegisterActivity extends FragmentActivity implements OnDate
     //タグ
     private final String LOG_TAG = "WeightRegisterActivity";
 
-    private DBManager mDBManager;
-    private Toolbar mToolbar;
-    private TextView textView;
-    private Button calButton;
-    protected int mYear;
-    protected int mMonth;
-    protected int mDay;
-    private RadioGroup radioGroup;
+    protected String mYear;
+    protected String mMonth;
+    protected String mDay;
+    private TextView yearText;
+    private TextView monthText;
+    private TextView dayText;
+    private String train_menu;
     private int id;
-    private RadioButton radioButton;
+    private RadioGroup radioGroup;
     private Button button;
     private Button cancel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_register);
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment dialogFragment = new DatePick();
+        dialogFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        yearText.setText(String.valueOf(year));
+        monthText.setText(String.valueOf(month + 1));
+        dayText.setText(String.valueOf(dayOfMonth));
     }
 
     @Override
@@ -51,29 +59,65 @@ public class TrainingRegisterActivity extends FragmentActivity implements OnDate
         //layout紐付け
         setContentView(R.layout.activity_training_register);
 
-
         //Toolbarの設置
-        mToolbar = findViewById(R.id.actionbar);
+        Toolbar mToolbar = findViewById(R.id.actionbar);
 
         //TextViewを紐づける
-        textView = findViewById(R.id.test_text);
+        yearText = findViewById(R.id.test_text_year);
+        monthText = findViewById(R.id.test_text_month);
+        dayText = findViewById(R.id.test_text_day);
 
         //カレンダー表示ボタンを紐づける
-        calButton = findViewById(R.id.calender_button);
-
-        //RadioGroupを紐づける
-        radioGroup = findViewById(R.id.radio_group);
-        id = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(id);
+        Button calButton = findViewById(R.id.calender_button);
 
         //登録ボタンを紐づける
         button = findViewById(R.id.register_button);
-        mDBManager = new DBManager(TrainingRegisterActivity.this);
+        DBManager mDBManager = new DBManager(TrainingRegisterActivity.this);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("InsertButton", "登録ボタンが押されました");
+                //TextViewに表示されている値を取得
+                mYear = yearText.getText().toString();
+                mMonth = monthText.getText().toString();
+                mDay = dayText.getText().toString();
 
+                //選択されたRadioButtonごとに値を指定して格納する
+                //RadioGroupを紐づける
+                radioGroup = findViewById(R.id.radio_group);
+                id = radioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = findViewById(id);
+                train_menu = radioButton.getText().toString();
+                switch (train_menu) {
+                    case "大胸筋":
+                        train_menu = "CHEST DAY";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                    case "背中":
+                        train_menu = "BACK DAY";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                    case "肩・腕":
+                        train_menu = "SHOULDER DAY";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                    case "下半身":
+                        train_menu = "LOWER DAY";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                    case "有酸素":
+                        train_menu = "RUN DAY";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                    case "オフ":
+                        train_menu = "OFF DAY";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                    default:
+                        train_menu = "記録無し";
+                        mDBManager.insertTrain(train_menu, mYear, mMonth, mDay);
+                        break;
+                }
             }
         });
 
@@ -88,73 +132,4 @@ public class TrainingRegisterActivity extends FragmentActivity implements OnDate
             }
         });
     }
-
-    public void showDatePickerDialog(View v) {
-        DialogFragment dialogFragment = new DatePick();
-        dialogFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String str = String.format(Locale.US, "%d/%d/%d", year, month + 1, dayOfMonth);
-        textView.setText(str);
-    }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home_icon:
-                Log.i(LOG_TAG, "home_iconが選択されました。");
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.menu_register:
-                Log.i(LOG_TAG, "メニュー追加ボタンが選択されました。");
-                Intent intentM = new Intent(this, TrainingRegisterActivity.class);
-                startActivity(intentM);
-                return true;
-            case R.id.weight_register:
-                Log.i(LOG_TAG, "体重追加ボタンが選択されました。");
-                Intent intentW = new Intent(this, WeightRegisterActivity.class);
-                startActivity(intentW);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    /*//TextView(Test用)
-    TextView textView = findViewById(R.id.test_text);
-
-        //クリックイベントを実装
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Calendarインスタンスを取得
-                final Calendar date = Calendar.getInstance();
-
-                //DatePickerDialogインスタンスを取得
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        TrainingRegisterActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                //setした日付を取得して表示
-                                editText.setText(String.format("%d / %02d / %02d", year, month + 1, dayOfMonth));
-                            }
-                        },
-                        date.get(Calendar.YEAR),
-                        date.get(Calendar.MONTH),
-                        date.get(Calendar.DATE)
-                );
-                //dialogを表示
-                datePickerDialog.show();
-            }
-        });*/
 }

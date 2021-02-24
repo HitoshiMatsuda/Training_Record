@@ -18,10 +18,7 @@ import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.R;
 
 public class WeightRegisterActivity extends AppCompatActivity {
-    //タグ
-    private final String LOG_TAG = "WeightRegisterActivity";
 
-    private Toolbar mToolbar;
     protected EditText mWeight;
     protected EditText mFat;
     protected String weight;
@@ -43,7 +40,7 @@ public class WeightRegisterActivity extends AppCompatActivity {
         DBManager mDBManager = new DBManager(WeightRegisterActivity.this);
 
         //Toolbarをセット
-        mToolbar = findViewById(R.id.actionbar);
+        Toolbar mToolbar = findViewById(R.id.actionbar);
         setSupportActionBar(mToolbar);
 
         //EditText紐付け
@@ -75,6 +72,8 @@ public class WeightRegisterActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //タグ
+        String LOG_TAG = "WeightRegisterActivity";
         switch (item.getItemId()) {
             case R.id.home_icon:
                 Log.i(LOG_TAG, "home_iconが選択されました。");
