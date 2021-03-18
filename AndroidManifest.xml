@@ -4,11 +4,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/analytics_24"
+        android:icon="@mipmap/training_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Custom_Design">
+        <activity android:name=".Activity.MenuDetailActivity"></activity>
+        <activity android:name=".Activity.AbsMainActivity" />
+        <activity android:name=".Activity.MenuActivity" />
+        <activity android:name=".Activity.EditActivity" />
         <activity android:name=".Activity.TrainingRegisterActivity" />
         <activity android:name=".Activity.WeightRegisterActivity" />
         <activity android:name=".Activity.MainActivity">

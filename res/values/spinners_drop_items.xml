@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="training_menus">
+        <item>CHEST DAY</item>
+        <item>BACK DAY</item>
+        <item>LOWER DAY</item>
+        <item>SHOULDER DAY</item>
+        <item>RUN DAY</item>
+        <item>OFF DAY</item>
+    </string-array>
+</resources>

@@ -1,0 +1,48 @@
+<resources>
+    <!-- ホーム用 -->
+    <string name="app_name">TrainingRecord</string>
+    <string name="TrainingRecord">Training</string>
+    <string name="WeightRecord">Weight</string>
+    <string name="back_home">ホームへ</string>
+
+    <!-- トレーニング管理(筋群用語) -->
+    <string name="Muscle">筋群</string>
+    <string name="Chest">大胸筋</string>
+    <string name="Shoulder">肩・腕</string>
+    <string name="Back">背中</string>
+    <string name="Run">有酸素</string>
+    <string name="Legs">下半身</string>
+    <string name="Off">オフ</string>
+
+    <!-- トレーニング管理(ボタン用語) -->
+    <string name="register">登録</string>
+    <string name="date_hint_text">日付を選択してください</string>
+    <string name="menu_register_hint">トレーニングメニューを追加</string>
+    <string name="menu_add">トレーニングメニューを追加する</string>
+    <string name="menu_detail">トレーニング名</string>
+
+    <!-- ウエイト管理(ボタン用語) -->
+    <string name="edit_weight">体重</string>
+    <string name="edit_fat">体脂肪</string>
+
+    <!-- Navigation Drawer Main Menu -->
+    <string name="main_menu">メインコンテンツ</string>
+    <string name="training_string">トレーニングを記録</string>
+    <string name="weight_string">体重を記録</string>
+    <string name="menu_string">メニューを編集</string>
+
+    <!--  Navigation Drawer Menu -->
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
+    <!-- Navigation Drawer Profile-->
+    <string name="profile">Profile</string>
+    <string name="login">ログイン</string>
+    <string name="logout">ログアウト</string>
+    <string name="my_profile">プロフィール</string>
+
+    <!-- Navigation Drawer Contact-->
+    <string name="contact">Contact</string>
+    <string name="contact_us">問い合わせ</string>
+    <string name="help_us">ヘルプ</string>
+</resources>
