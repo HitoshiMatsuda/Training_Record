@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Custom_Design">
-        <activity android:name=".Activity.MenuDetailActivity"></activity>
+        <activity android:name=".Activity.SelectMenuActivity"></activity>
+        <activity android:name=".Activity.AllMenuActivity" />
+        <activity android:name=".Activity.MenuDetailActivity" />
         <activity android:name=".Activity.AbsMainActivity" />
-        <activity android:name=".Activity.MenuActivity" />
+        <activity android:name=".Activity.MenuEditActivity" />
         <activity android:name=".Activity.EditActivity" />
-        <activity android:name=".Activity.TrainingRegisterActivity" />
+        <activity android:name=".Activity.TodayTrainingMenuRegisterActivity" />
         <activity android:name=".Activity.WeightRegisterActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
