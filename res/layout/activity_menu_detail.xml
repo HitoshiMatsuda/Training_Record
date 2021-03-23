@@ -50,19 +50,189 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/training_name"
+                android:layout_width="match_parent"
+                android:layout_height="64dp" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <EditText
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:id="@+id/training_weight"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
+
+                <TextView
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/training_weight_unit"
+                    android:gravity="center"
+                    android:id="@+id/training_weight_unit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/first_set_hint_text"
+                    android:layout_width="108dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="@string/training_first_set" />
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/first_set_edit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/first_set_unit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:text="@string/unit_set" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/second_set_hint_text"
+                    android:layout_width="108dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="@string/training_second_set" />
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/second_set_edit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/second_set_unit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:text="@string/unit_set" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/third_set_hint_text"
+                    android:layout_width="108dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="@string/training_third_set" />
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/third_set_edit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/third_set_unit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:text="@string/unit_set" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fourth_set_hint_text"
+                    android:layout_width="108dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="@string/training_fourth_set" />
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/fourth_set_edit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp" />
+
+                <TextView
+                    android:id="@+id/fourth_set_unit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:text="@string/unit_set" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
             <Button
-                android:id="@+id/menu_add_detail"
+                android:id="@+id/cancel_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:text="@string/menu_add" />
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/back_home" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/menu_list"
+            <Button
+                android:id="@+id/register_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
-
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="@string/register" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
