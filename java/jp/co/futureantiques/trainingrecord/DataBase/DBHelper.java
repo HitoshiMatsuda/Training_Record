@@ -11,18 +11,30 @@ public class DBHelper extends SQLiteOpenHelper {
     //データベースのバージョン
     private static final int VERSION = 1;
     //固定値（カラム名）
-    //TABLE1
+    //TABLE1(体重テーブル)
     private static final String ID = "id";
     private static final String WEIGHT = "weight";
     private static final String FAT = "fat";
     private static final String MEMO = "memo";
     private static final String CREATION_DATE = "creation_date";
-    //TABLE2
-    private static final String TRAIN_MENU = "train_menu";
+
+    //TRAINING_MASTER_TABLE
+    private static final String MUSCLE_NAME = "muscle_name";
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String DAY = "day";
-    private static final String DELETE_FLAG = "delete_flag";
+    private static final String JOIN_KEY = "join_key";
+
+    //TODAY_TRAINING_RECORD_TABLE
+    private static final String HEAVY = "heavy";
+    private static final String FIRST = "first_set";
+    private static final String SECOND = "second_set";
+    private static final String THIRD = "third_set";
+    private static final String FOURTH = "fourth_set";
+    private static final String SPAN = "sets_span";
+
+    //TRAINING_MENU_TABLE
+    private static final String TRAINING_NAME = "training_name";
 
 
     //コンストラクタ
@@ -35,25 +47,54 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i("Log_DB_Create", "dbHelperクラスのonCreateが実行されました。");
 
-        // テーブルを作成する
+        //体重テーブル
         //ID|体重|体脂肪率|メモ|日付|削除フラグ
         db.execSQL("CREATE TABLE WEIGHT_TABLE("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + WEIGHT + " INTEGER, "
                 + FAT + " INTEGER, "
                 + MEMO + " TEXT, "
-                + CREATION_DATE + " TIMESTAMP DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME')), "
-                + DELETE_FLAG + " INTEGER DEFAULT 0) "
+                + CREATION_DATE + " TIMESTAMP DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME'))) "
         );
 
-        //ID|メモ|メニュー|年|月|日|削除フラグ
-        db.execSQL("CREATE TABLE TRAINING_TABLE("
+        //TRAINING_MASTER_TABLE
+        //id|muscle_id|muscle_name|year|month|day
+        db.execSQL("CREATE TABLE TRAINING_MASTER_TABLE("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TRAIN_MENU + " TEXT, "
+                + MUSCLE_NAME + " TEXT, "
                 + YEAR + " TEXT, "
                 + MONTH + " TEXT, "
                 + DAY + " TEXT, "
-                + DELETE_FLAG + " INTEGER DEFAULT 0) "
+                + JOIN_KEY + " TEXT) "
+        );
+
+        //TODAY_TRAINING_RECORD_TABLE
+        //id|master_join_id|muscle_id|muscle_name|training_id|training_name|heavy|menu_sets|sets_span
+        db.execSQL("CREATE TABLE TODAY_TRAINING_RECORD_TABLE("
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + JOIN_KEY + " TEXT, "
+                + TRAINING_NAME + " TEXT, "
+                + HEAVY + " TEXT, "
+                + FIRST + " TEXT, "
+                + SECOND + " TEXT, "
+                + THIRD + " TEXT, "
+                + FOURTH + " TEXT, "
+                + SPAN + " TEXT) "
+        );
+
+        //MUSCLE_TABLE
+        //id|muscle_id|muscle_name
+        db.execSQL("CREATE TABLE MUSCLE_TABLE("
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + MUSCLE_NAME + " TEXT )"
+        );
+
+        //TRAINING_MENU_TABLE
+        //id|muscle_name|training_name
+        db.execSQL("CREATE TABLE TRAINING_MENU_TABLE("
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + MUSCLE_NAME + " TEXT, "
+                + TRAINING_NAME + " TEXT )"
         );
     }
 

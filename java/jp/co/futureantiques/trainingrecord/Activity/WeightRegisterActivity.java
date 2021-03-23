@@ -82,7 +82,7 @@ public class WeightRegisterActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_register:
                 Log.i(LOG_TAG, "メニュー追加ボタンが選択されました。");
-                Intent intentM = new Intent(this, TrainingRegisterActivity.class);
+                Intent intentM = new Intent(this, TodayTrainingMenuRegisterActivity.class);
                 startActivity(intentM);
                 return true;
             case R.id.weight_register:

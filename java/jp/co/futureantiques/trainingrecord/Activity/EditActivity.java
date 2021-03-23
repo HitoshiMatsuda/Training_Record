@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.navigation.NavigationView;
@@ -26,23 +25,14 @@ import jp.co.futureantiques.trainingrecord.TrainingData;
 public class EditActivity extends AbsMainActivity {
     private final String LOG_TAG = "EditActivity";
 
-    //更新前
-    protected TextView oldYearText;
-    protected TextView oldMonthText;
-    protected TextView oldDayText;
-    protected String mId;
-    protected String oldYear;
-    protected String oldMonth;
-    protected String oldDay;
-    protected String oldMenu;
     //更新後
-    protected TextView newYearText;
-    protected TextView newMonthText;
-    protected TextView newDayText;
-    protected String newYear;
-    protected String newMonth;
-    protected String newDay;
-    protected String newMenu;
+    private TextView newYearText;
+    private TextView newMonthText;
+    private TextView newDayText;
+    private String newYear;
+    private String newMonth;
+    private String newDay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +75,10 @@ public class EditActivity extends AbsMainActivity {
         TrainingData trainingData = mDBManager.selectEdit(mId);
 
         //TextViewを紐づける(更新前)
-        oldYearText = findViewById(R.id.old_year);
-        oldMonthText = findViewById(R.id.old_month);
-        oldDayText = findViewById(R.id.old_day);
+        //更新前
+        TextView oldYearText = findViewById(R.id.old_year);
+        TextView oldMonthText = findViewById(R.id.old_month);
+        TextView oldDayText = findViewById(R.id.old_day);
 
         //TextViewを紐づける(更新後)
         newYearText = findViewById(R.id.new_year);
@@ -95,10 +86,10 @@ public class EditActivity extends AbsMainActivity {
         newDayText = findViewById(R.id.new_day);
 
         //TrainingDataから更新前のデータを取得
-        oldYear = trainingData.getYear();
-        oldMonth = trainingData.getMonth();
-        oldDay = trainingData.getDay();
-        oldMenu = trainingData.getMenu();
+        String oldYear = trainingData.getYear();
+        String oldMonth = trainingData.getMonth();
+        String oldDay = trainingData.getDay();
+        oldTraining = trainingData.getMenu();
 
         //TextViewへ表示する(更新元データ)
         oldYearText.setText(oldYear);
@@ -113,13 +104,13 @@ public class EditActivity extends AbsMainActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinner = (Spinner)parent;
-                train_menu = (String) spinner.getSelectedItem();
+                muscle_name = (String) spinner.getSelectedItem();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 //Itemが選択されなかった場合
-                train_menu = "記録無し";
+                muscle_name = "記録無し";
             }
         });
 
@@ -144,34 +135,34 @@ public class EditActivity extends AbsMainActivity {
                 newYear = newYearText.getText().toString();
                 newMonth = newMonthText.getText().toString();
                 newDay = newDayText.getText().toString();
-                switch (train_menu) {
+                switch (muscle_name) {
                     case "大胸筋":
-                        newMenu = "CHEST DAY";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "CHEST DAY";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                     case "背中":
-                        newMenu = "BACK DAY";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "BACK DAY";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                     case "肩・腕":
-                        newMenu = "SHOULDER DAY";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "SHOULDER DAY";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                     case "下半身":
-                        newMenu = "LOWER DAY";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "LOWER DAY";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                     case "有酸素":
-                        newMenu = "RUN DAY";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "RUN DAY";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                     case "オフ":
-                        newMenu = "OFF DAY";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "OFF DAY";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                     default:
-                        newMenu = "記録無し";
-                        mDBManager.trainUpDate(mId, train_menu, newYear, newMonth, newDay);
+                        newTraining = "記録無し";
+                        mDBManager.trainUpDate(mId, muscle_name, newYear, newMonth, newDay);
                         break;
                 }
             }
@@ -190,7 +181,7 @@ public class EditActivity extends AbsMainActivity {
                         break;
                     case R.id.training_register:
                         Log.i(LOG_TAG, "トレーニング追加ボタンが選択されました。");
-                        Intent intentT = new Intent(EditActivity.this, TrainingRegisterActivity.class);
+                        Intent intentT = new Intent(EditActivity.this, TodayTrainingMenuRegisterActivity.class);
                         startActivity(intentT);
                         break;
                     case R.id.weight_register:
@@ -200,7 +191,7 @@ public class EditActivity extends AbsMainActivity {
                         return true;
                     case R.id.menu_register:
                         Log.i(LOG_TAG, "メニュー追加ボタンが選択されました。");
-                        Intent intentM = new Intent(EditActivity.this, MenuActivity.class);
+                        Intent intentM = new Intent(EditActivity.this, AllMenuActivity.class);
                         startActivity(intentM);
                         return true;
                 }

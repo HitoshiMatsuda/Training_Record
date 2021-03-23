@@ -1,8 +1,13 @@
 package jp.co.futureantiques.trainingrecord.Activity;
 
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -10,12 +15,21 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.R;
 
 public class AbsMainActivity extends FragmentActivity implements OnDateSetListener {
+    protected final String YEAR_KEY = "year_key";
+    protected final String MONTH_KEY = "month_key";
+    protected final String DAY_KEY = "day_key";
+    protected final String MUSCLE_KEY = "muscle_key";
+    protected final String JOIN_KEY = "join_key";
+    protected String join_key;
+
     //DrawerLayout
     protected DrawerLayout mDrawerLayout;
     protected NavigationView mNavigationView;
@@ -32,8 +46,35 @@ public class AbsMainActivity extends FragmentActivity implements OnDateSetListen
     protected TextView dayText;
 
     //トレーニング部位(大分類)
-    protected String train_menu;
+    protected String muscle_name;
     protected Spinner spinner;
+
+    //ListView表示用
+    protected ListView listView;
+    protected DBManager mDBManager;
+    protected Cursor cursor;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+
+    //登録関係
+    protected Button registerButton;
+    protected Context context;
+    protected String mId;
+    protected String oldTraining;
+    protected String newTraining;
+    protected String selectTraining;
+
+    //トレーニング記録用
+    protected int keyId;
+    protected EditText heavyInput;
+    protected EditText firstInput;
+    protected EditText secondInput;
+    protected EditText thirdInput;
+    protected EditText fourthInput;
+    protected String heavy;
+    protected String first;
+    protected String second;
+    protected String third;
+    protected String fourth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

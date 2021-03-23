@@ -79,18 +79,18 @@ public class MainActivity extends AbsMainActivity {
                         startActivity(intent);
                         break;
                     case R.id.training_register:
-                        Log.i(LOG_TAG, "トレーニング追加ボタンが選択されました。");
-                        Intent intentT = new Intent(MainActivity.this, TrainingRegisterActivity.class);
+                        Log.i(LOG_TAG, "トレーニングボタンが選択されました。");
+                        Intent intentT = new Intent(MainActivity.this, TodayTrainingMenuRegisterActivity.class);
                         startActivity(intentT);
                         break;
                     case R.id.weight_register:
-                        Log.i(LOG_TAG, "体重追加ボタンが選択されました。");
+                        Log.i(LOG_TAG, "体重ボタンが選択されました。");
                         Intent intentW = new Intent(MainActivity.this, WeightRegisterActivity.class);
                         startActivity(intentW);
                         return true;
                     case R.id.menu_register:
-                        Log.i(LOG_TAG, "メニュー追加ボタンが選択されました。");
-                        Intent intentM = new Intent(MainActivity.this, MenuActivity.class);
+                        Log.i(LOG_TAG, "メニューボタンが選択されました。");
+                        Intent intentM = new Intent(MainActivity.this, AllMenuActivity.class);
                         startActivity(intentM);
                         return true;
                 }
