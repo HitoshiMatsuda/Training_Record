@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
-import jp.co.futureantiques.trainingrecord.Activity.EditActivity;
+import jp.co.futureantiques.trainingrecord.Activity.TrainingEditActivity;
 
 public class DatePickUpdate extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -27,7 +27,7 @@ public class DatePickUpdate extends DialogFragment implements DatePickerDialog.O
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        return new DatePickerDialog(getActivity(), (EditActivity) getActivity(), year, month, dayOfMonth);
+        return new DatePickerDialog(getActivity(), (TrainingEditActivity) getActivity(), year, month, dayOfMonth);
     }
 
     @Override

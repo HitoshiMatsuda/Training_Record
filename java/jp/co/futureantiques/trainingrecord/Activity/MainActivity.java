@@ -3,7 +3,6 @@ package jp.co.futureantiques.trainingrecord.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -22,8 +21,6 @@ import jp.co.futureantiques.trainingrecord.Fragment.MainFragmentStateAdapter;
 import jp.co.futureantiques.trainingrecord.R;
 
 public class MainActivity extends AbsMainActivity {
-    private final String LOG_TAG = "MainActivity";
-
     private ViewPager2 mPager;
     private MainFragmentStateAdapter mMainFragmentStateAdapter;
     private List<Fragment> mFragmentList = new ArrayList<>();
@@ -32,36 +29,25 @@ public class MainActivity extends AbsMainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(LOG_TAG, "onCreate");
+        setContentView(R.layout.activity_main);
+        Log.i("info", "onCreate");
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     protected void onResume() {
-        super.onResume();
         setContentView(R.layout.activity_main);
-
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-        mNavigationView = findViewById(R.id.nav_view);
-        mToolbar = findViewById(R.id.app_actionbar);
+        super.onResume();
 
         aBar();
 
-        Menu menu = mNavigationView.getMenu();
-        menu.findItem(R.id.logout_icon).setVisible(false);
-        menu.findItem(R.id.login_icon).setVisible(false);
-
-        //ViewPager2
         mPager = findViewById(R.id.viewPager2);
-
-        //TabLayout
         mTabLayout = findViewById(R.id.tabs);
 
-        //Fragment
         mFragmentList.add(new TrainingRecordFragment());
         mFragmentList.add(new WeightRecordFragment());
 
-        //TabLayoutとViewPager2を連動させる
         tabViewAdapter();
 
         //MainFragmentStateAdapterをnewする
@@ -74,23 +60,23 @@ public class MainActivity extends AbsMainActivity {
 
                 switch (item.getItemId()) {
                     case R.id.home_icon:
-                        Log.i(LOG_TAG, "home_iconが選択されました。");
                         Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        Log.i("move","MainActivityに遷移");
                         startActivity(intent);
                         break;
                     case R.id.training_register:
-                        Log.i(LOG_TAG, "トレーニングボタンが選択されました。");
-                        Intent intentT = new Intent(MainActivity.this, TodayTrainingMenuRegisterActivity.class);
+                        Intent intentT = new Intent(MainActivity.this, TrainingRegisterActivity.class);
+                        Log.i("move","TrainingRegisterActivityに遷移");
                         startActivity(intentT);
                         break;
                     case R.id.weight_register:
-                        Log.i(LOG_TAG, "体重ボタンが選択されました。");
                         Intent intentW = new Intent(MainActivity.this, WeightRegisterActivity.class);
+                        Log.i("move","WeightRegisterActivityに遷移");
                         startActivity(intentW);
                         return true;
                     case R.id.menu_register:
-                        Log.i(LOG_TAG, "メニューボタンが選択されました。");
-                        Intent intentM = new Intent(MainActivity.this, AllMenuActivity.class);
+                        Intent intentM = new Intent(MainActivity.this, TrainingNameRegisterActivity.class);
+                        Log.i("move","TrainingNameRegisterActivityに遷移");
                         startActivity(intentM);
                         return true;
                 }

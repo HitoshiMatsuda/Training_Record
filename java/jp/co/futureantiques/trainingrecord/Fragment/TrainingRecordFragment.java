@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,17 +17,17 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import jp.co.futureantiques.trainingrecord.Activity.EditActivity;
+import jp.co.futureantiques.trainingrecord.Activity.TrainingEditActivity;
 import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.R;
 
 public class TrainingRecordFragment extends Fragment {
-    private final String LOG_TAG = "TrainingRecordFragment";
 
     private static final String MUSCLE_NAME = "muscle_name";
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String DAY = "day";
+    private String editKey = "EditKey";
 
     private DBManager mDBManager;
     private Context context;
@@ -59,7 +58,7 @@ public class TrainingRecordFragment extends Fragment {
 
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(
                 context,
-                R.layout.days_training_record_list_layout,
+                R.layout.list_layout_main_activity,
                 cursor,
                 new String[]{MUSCLE_NAME, YEAR, MONTH, DAY},
                 new int[]{R.id.muscle_name, R.id.date_year, R.id.date_month, R.id.date_day},
@@ -71,12 +70,9 @@ public class TrainingRecordFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //インテントの作成
-                Intent intent = new Intent(context, EditActivity.class);
-
-                //値を引き渡す
-                intent.putExtra("key", String.valueOf(id));
-                //Activityの起動
+                Intent intent = new Intent(context, TrainingEditActivity.class);
+                intent.putExtra("mId", String.valueOf(id));
+                intent.putExtra("editKey",editKey);
                 startActivity(intent);
             }
         });

@@ -5,6 +5,11 @@ public class TrainingData {
     protected String month;
     protected String day;
     protected String menu;
+    protected String heavyWeight;
+    protected String first;
+    protected String second;
+    protected String third;
+    protected String fourth;
 
     public String getHeavyWeight() {
         return heavyWeight;
@@ -45,12 +50,6 @@ public class TrainingData {
     public void setFourth(String fourth) {
         this.fourth = fourth;
     }
-
-    protected String heavyWeight;
-    protected String first;
-    protected String second;
-    protected String third;
-    protected String fourth;
 
     public String getYear() {
         return year;
