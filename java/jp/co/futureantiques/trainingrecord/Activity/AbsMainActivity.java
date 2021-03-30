@@ -68,6 +68,7 @@ public class AbsMainActivity extends FragmentActivity implements OnDateSetListen
     protected Button deleteButton;
     protected Button updateButton;
     protected Button homeButton;
+    protected Button selectButton;
     protected Context context;
     protected String mId;
     protected String oldTraining;
@@ -128,11 +129,13 @@ public class AbsMainActivity extends FragmentActivity implements OnDateSetListen
         monthText = findViewById(R.id.test_text_month);
         dayText = findViewById(R.id.test_text_day);
 
+
         //Button
         registerButton = findViewById(R.id.register_button);
         deleteButton = findViewById(R.id.delete_button);
         updateButton = findViewById(R.id.update_button);
         homeButton = findViewById(R.id.home_button);
+        selectButton = findViewById(R.id.menu_register_button);
 
         //トレーニングのメニューごとの記録入力欄
         trainingName = findViewById(R.id.training_name);

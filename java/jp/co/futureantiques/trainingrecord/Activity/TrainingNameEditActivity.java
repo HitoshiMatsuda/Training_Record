@@ -2,12 +2,8 @@ package jp.co.futureantiques.trainingrecord.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -15,7 +11,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.R;
-import jp.co.futureantiques.trainingrecord.TrainingData;
 
 public class TrainingNameEditActivity extends AbsMainActivity {
 
@@ -42,14 +37,13 @@ public class TrainingNameEditActivity extends AbsMainActivity {
 
 
         //更新前のトレーニングメニュー
-        TrainingData trainingData = mDBManager.selectMenuEdit(mId);
-        oldTraining = trainingData.getMenu();
+        mTrainingData = mDBManager.selectMenuEdit(mId);
+        oldTraining = mTrainingData.getMenu();
         trainingName.setText(oldTraining);
 
 
         //トレーニングメニュー更新処理
-        Button updateB = findViewById(R.id.update_button);
-        updateB.setOnClickListener(new View.OnClickListener() {
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newTraining = inputTrainingName.getText().toString();

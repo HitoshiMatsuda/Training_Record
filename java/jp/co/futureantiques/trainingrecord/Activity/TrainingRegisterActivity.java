@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,8 +27,8 @@ public class TrainingRegisterActivity extends AbsMainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_register);
+        super.onCreate(savedInstanceState);
     }
 
 
@@ -49,6 +48,7 @@ public class TrainingRegisterActivity extends AbsMainActivity {
 
     @Override
     public void onResume() {
+        setContentView(R.layout.activity_training_register);
         super.onResume();
 
         mDBManager = new DBManager(TrainingRegisterActivity.this);
@@ -146,7 +146,6 @@ public class TrainingRegisterActivity extends AbsMainActivity {
 
         //「トレーニングを追加」ボタンの押下処理
         //日付と筋群が指定されている場合のみ画面遷移可能
-        Button selectButton = findViewById(R.id.menu_register_button);
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,7 +191,6 @@ public class TrainingRegisterActivity extends AbsMainActivity {
 
 
         //トレーニング記録を登録します
-        registerButton = findViewById(R.id.register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -256,8 +254,7 @@ public class TrainingRegisterActivity extends AbsMainActivity {
 
 
         //トレーニングの記録をキャンセルし、HOME画面へ遷移
-        Button cancelButton = findViewById(R.id.cancel_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrainingRegisterActivity.this, MainActivity.class);

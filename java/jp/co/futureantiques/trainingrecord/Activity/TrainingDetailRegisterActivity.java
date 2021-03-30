@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
@@ -17,14 +16,14 @@ public class TrainingDetailRegisterActivity extends AbsMainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_detail_register);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         setContentView(R.layout.activity_training_detail_register);
+        super.onResume();
 
         mDBManager = new DBManager(TrainingDetailRegisterActivity.this);
 
@@ -45,13 +44,6 @@ public class TrainingDetailRegisterActivity extends AbsMainActivity {
         selectTraining = mTrainingData.getMenu();
         trainingName.setText(selectTraining);
 
-        heavyInput = findViewById(R.id.training_weight);
-        firstInput = findViewById(R.id.first_set_edit);
-        secondInput = findViewById(R.id.second_set_edit);
-        thirdInput = findViewById(R.id.third_set_edit);
-        fourthInput = findViewById(R.id.fourth_set_edit);
-
-        Button registerButton = findViewById(R.id.register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,8 +79,7 @@ public class TrainingDetailRegisterActivity extends AbsMainActivity {
         });
 
         //登録キャンセル機能(Home画面への遷移機能)
-        Button cancelButton = findViewById(R.id.cancel_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrainingDetailRegisterActivity.this, MainActivity.class);
