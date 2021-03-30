@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/main_menu">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/home_icon"
+                    android:icon="@drawable/house_24"
+                    android:title="@string/back_home" />
+
+                <item
+                    android:id="@+id/training_register"
+                    android:icon="@drawable/ic_baseline_fitness_center_24"
+                    android:title="@string/training_string" />
+
+                <item
+                    android:id="@+id/weight_register"
+                    android:icon="@drawable/ic_baseline_monitor_weight_24"
+                    android:title="@string/weight_string" />
+
+                <item
+                    android:id="@+id/menu_register"
+                    android:icon="@drawable/ic_baseline_assignment_24"
+                    android:title="@string/menu_string" />
+
+            </group>
+        </menu>
+    </item>
+</menu>
