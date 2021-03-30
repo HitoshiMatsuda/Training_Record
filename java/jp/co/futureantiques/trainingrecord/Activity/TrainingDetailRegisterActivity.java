@@ -2,11 +2,9 @@ package jp.co.futureantiques.trainingrecord.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -14,7 +12,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.R;
-import jp.co.futureantiques.trainingrecord.TrainingData;
 
 public class TrainingDetailRegisterActivity extends AbsMainActivity {
 

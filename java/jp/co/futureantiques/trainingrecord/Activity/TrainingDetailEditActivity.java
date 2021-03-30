@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
 import jp.co.futureantiques.trainingrecord.R;
@@ -13,12 +12,13 @@ public class TrainingDetailEditActivity extends AbsMainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_detail_edit);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onResume() {
+        setContentView(R.layout.activity_training_detail_edit);
         super.onResume();
 
         mDBManager = new DBManager(TrainingDetailEditActivity.this);
@@ -26,9 +26,10 @@ public class TrainingDetailEditActivity extends AbsMainActivity {
         aBar();
 
         Intent intent = this.getIntent();
-        mId = intent.getStringExtra("key");
+        String mKey = intent.getStringExtra("key");
+        mId = intent.getStringExtra("mId");
         String editKey = intent.getStringExtra("editKey");
-        mTrainingData = mDBManager.detailTrainingRecordSelect(mId);
+        mTrainingData = mDBManager.detailTrainingRecordSelect(mKey);
         oldTraining = mTrainingData.getMenu();
         heavy = mTrainingData.getHeavyWeight();
         first = mTrainingData.getFirst();
@@ -47,7 +48,7 @@ public class TrainingDetailEditActivity extends AbsMainActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDBManager.deleteTrainingDetailRecord(mId);
+                mDBManager.deleteTrainingDetailRecord(mKey);
 
                 Intent intent = new Intent(TrainingDetailEditActivity.this, TrainingEditActivity.class);
                 intent.putExtra("mId",mId);
@@ -61,7 +62,12 @@ public class TrainingDetailEditActivity extends AbsMainActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDBManager.trainingDetailRecordUpdate(mId,heavy,first,second,third,fourth);
+                heavy = heavyInput.getText().toString();
+                first = firstInput.getText().toString();
+                second = secondInput.getText().toString();
+                third = thirdInput.getText().toString();
+                fourth = fourthInput.getText().toString();
+                mDBManager.trainingDetailRecordUpdate(mKey,heavy,first,second,third,fourth);
 
                 Intent intent = new Intent(TrainingDetailEditActivity.this, TrainingEditActivity.class);
                 intent.putExtra("mId",mId);

@@ -6,33 +6,28 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
-import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.navigation.NavigationView;
 
 import jp.co.futureantiques.trainingrecord.DataBase.DBManager;
-import jp.co.futureantiques.trainingrecord.Fragment.DatePickUpdate;
 import jp.co.futureantiques.trainingrecord.R;
 
 public class TrainingEditActivity extends AbsMainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_edit);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     public void onResume() {
+        setContentView(R.layout.activity_training_edit);
         super.onResume();
 
         aBar();
@@ -77,6 +72,7 @@ public class TrainingEditActivity extends AbsMainActivity {
                 Log.i("Move", "TrainingMenuEditActivityへ遷移します");
                 Intent intent = new Intent(TrainingEditActivity.this, TrainingDetailEditActivity.class);
                 intent.putExtra("key", String.valueOf(id));
+                intent.putExtra("mId",mId);
                 intent.putExtra("editKey", editKey);
                 startActivity(intent);
             }
