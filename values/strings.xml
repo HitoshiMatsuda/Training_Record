@@ -1,0 +1,60 @@
+<resources>
+    <!-- ホーム用 -->
+    <string name="app_name">TrainingRecord</string>
+    <string name="TrainingRecord">Training</string>
+    <string name="WeightRecord">Weight</string>
+    <string name="back_home">ホーム</string>
+
+    <!-- トレーニング管理(筋群用語) -->
+    <string name="Muscle">筋群</string>
+    <string name="Chest">大胸筋</string>
+    <string name="Shoulder">肩・腕</string>
+    <string name="Back">背中</string>
+    <string name="Run">有酸素</string>
+    <string name="Legs">下半身</string>
+    <string name="Off">オフ</string>
+    <string name="training_weight">重量</string>
+    <string name="training_weight_unit">kg</string>
+    <string name="training_first_set">Set1</string>
+    <string name="training_second_set">Set2</string>
+    <string name="training_third_set">Set3</string>
+    <string name="training_fourth_set">Set4</string>
+    <string name="unit_set">回</string>
+    <string name="training_sets">セット数</string>
+    <string name="training_span">セット間</string>
+
+    <!-- トレーニング管理(ボタン用語) -->
+    <string name="register">登録</string>
+    <string name="delete">削除</string>
+    <string name="update">更新</string>
+    <string name="date_hint_text">日付を選択</string>
+    <string name="muscle_genre_text">筋群を追加する</string>
+    <string name="today_menu_register_hint">トレーニングを追加</string>
+    <string name="menu_add">トレーニングメニューを追加する</string>
+    <string name="menu_detail">トレーニング名</string>
+
+    <!-- ウエイト管理(ボタン用語) -->
+    <string name="edit_weight">体重</string>
+    <string name="edit_fat">体脂肪</string>
+
+    <!-- Navigation Drawer Main Menu -->
+    <string name="main_menu">メインコンテンツ</string>
+    <string name="training_string">トレーニングを記録</string>
+    <string name="weight_string">体重を記録</string>
+    <string name="menu_string">メニューを管理</string>
+
+    <!--  Navigation Drawer Menu -->
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
+    <!-- Navigation Drawer Profile-->
+    <string name="profile">Profile</string>
+    <string name="login">ログイン</string>
+    <string name="logout">ログアウト</string>
+    <string name="my_profile">プロフィール</string>
+
+    <!-- Navigation Drawer Contact-->
+    <string name="contact">Contact</string>
+    <string name="contact_us">問い合わせ</string>
+    <string name="help_us">ヘルプ</string>
+</resources>
